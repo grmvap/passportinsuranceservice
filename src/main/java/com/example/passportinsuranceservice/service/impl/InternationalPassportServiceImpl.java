@@ -12,14 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service("InternationalPassportServiceImpl")
-//@AllArgsConstructor
+@AllArgsConstructor
 public class InternationalPassportServiceImpl implements InternationalPassportService {
     private final InternationalPassportRepository internationalPassportRepository;
 
-    public InternationalPassportServiceImpl(InternationalPassportRepository internationalPassportRepository, PersonClientImpl personServiceImpl) {
-        this.internationalPassportRepository = internationalPassportRepository;
-        this.personServiceImpl = personServiceImpl;
-    }
 
     private final PersonClientImpl personServiceImpl;
 
@@ -38,7 +34,6 @@ public class InternationalPassportServiceImpl implements InternationalPassportSe
             }
         }
         return null;
-        //todo написать исключение, если баланс ниже 5000
     }
 
     @Override
