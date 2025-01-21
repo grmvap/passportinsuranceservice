@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
 public class PersonClientImpl implements PersonClient {
     private final RestTemplate restTemplate;
 
+    public PersonClientImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public PersonResponseDto getPersonDetails(Long personId) {
-        String url = "http://localhost:8080/person" + personId;
+        String url = "http://localhost:8080/person/id/" + personId;
         return restTemplate.getForObject(url, PersonResponseDto.class);
     }
 

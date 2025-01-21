@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: 7
+      author: Artem
+      changes:
+        - createTable:
+            tableName: internationalpassport
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: number
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: personId
+                  type: bigint

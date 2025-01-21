@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: 6
+      author: Artem
+      changes:
+        - createTable:
+            tableName: carinsuranse
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: carNumber
+                  type: bigint
+              - column:
+                  name: carPrice
+                  type: bigint
+              - column:
+                  name: carId
+                  type: bigint
