@@ -1,5 +1,7 @@
 package com.example.passportinsuranceservice.service.impl;
 
+import com.example.passportinsuranceservice.exceptions.BalanceException;
+import com.example.passportinsuranceservice.exceptions.EnumBalanceException;
 import com.example.passportinsuranceservice.model.InternationalPassport;
 import com.example.passportinsuranceservice.repository.InternationalPassportRepository;
 import com.example.passportinsuranceservice.service.InternationalPassportService;
@@ -26,7 +28,9 @@ public class InternationalPassportServiceImpl implements InternationalPassportSe
     public InternationalPassport createInternationalPassport(Long personId) {
 
         if (personId != null) {
-            if (personServiceImpl.getPersonDetails(personId).getBalance() >= 5000) {
+            if (personServiceImpl.getPersonDetails(personId).getBalance() < 5000) {
+                throw new BalanceException(EnumBalanceException.BALANCE.getBalanceException());
+            }else{
                 InternationalPassport internationalPassport = new InternationalPassport();
                 internationalPassport.setPersonId(personId);
                 internationalPassport.setNumber(getRandomPasportNumder());
@@ -55,4 +59,5 @@ public class InternationalPassportServiceImpl implements InternationalPassportSe
 
         return ThreadLocalRandom.current().nextInt(100000, 1000000);
     }
+
 }
