@@ -7,15 +7,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service("CarInsuranceServiceImpl")
-//@AllArgsConstructor
+@AllArgsConstructor
 
 public class CarInsuranceServiceImpl implements CarInsuranceService {
 
     private final CarInsuranceRepository carInsuranceRepository;
-
-    public CarInsuranceServiceImpl(CarInsuranceRepository carInsuranceRepository) {
-        this.carInsuranceRepository = carInsuranceRepository;
-    }
 
     @Override
     public CarInsurance createCarInsurance(CarInsurance carInsurance) {
