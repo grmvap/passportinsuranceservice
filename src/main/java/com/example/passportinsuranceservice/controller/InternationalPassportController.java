@@ -15,10 +15,8 @@ public class InternationalPassportController {
     private final InternationalPassportService internationalPassportService;
     private final RestTemplate restTemplate;
 
-
     @PostMapping("/create/{personId}")
     public InternationalPassport createPassport(@PathVariable Long personId) {
         return internationalPassportService.createInternationalPassport(personId);
     }
-
 }

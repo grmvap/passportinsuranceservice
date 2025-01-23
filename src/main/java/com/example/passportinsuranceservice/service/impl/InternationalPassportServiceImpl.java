@@ -5,8 +5,12 @@ import com.example.passportinsuranceservice.exceptions.EnumBalanceException;
 import com.example.passportinsuranceservice.model.InternationalPassport;
 import com.example.passportinsuranceservice.repository.InternationalPassportRepository;
 import com.example.passportinsuranceservice.service.InternationalPassportService;
+import com.example.passportinsuranceservice.service.person.PersonClient;
+import com.example.passportinsuranceservice.service.person.impl.PersonClientFeignImpl;
 import com.example.passportinsuranceservice.service.person.impl.PersonClientImpl;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,18 +19,15 @@ import java.util.concurrent.ThreadLocalRandom;
 @AllArgsConstructor
 public class InternationalPassportServiceImpl implements InternationalPassportService {
     private final InternationalPassportRepository internationalPassportRepository;
-
-
-    private final PersonClientImpl personServiceImpl;
-
+    private final PersonClient personService;
 
     @Override
     public InternationalPassport createInternationalPassport(Long personId) {
 
         if (personId != null) {
-            if (personServiceImpl.getPersonDetails(personId).getBalance() < 5000) {
+            if (personService.getPersonDetails(personId).getBalance() < 5000) {
                 throw new BalanceException(EnumBalanceException.BALANCE.getBalanceException());
-            }else{
+            } else {
                 InternationalPassport internationalPassport = new InternationalPassport();
                 internationalPassport.setPersonId(personId);
                 internationalPassport.setNumber(getRandomPasportNumder());
@@ -50,9 +51,8 @@ public class InternationalPassportServiceImpl implements InternationalPassportSe
     public void deleteInternationalPassport(InternationalPassport internationalPassport) {
 
     }
-    static int getRandomPasportNumder() {
 
+    static int getRandomPasportNumder() {
         return ThreadLocalRandom.current().nextInt(100000, 1000000);
     }
-
 }

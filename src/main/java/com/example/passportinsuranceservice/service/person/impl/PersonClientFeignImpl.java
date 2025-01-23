@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Profile("feign")
 @AllArgsConstructor
-@Service
+@Service("PersonClientFeignImpl")
 public class PersonClientFeignImpl implements PersonClient {
 
     private final FeignClientService feignClientService;

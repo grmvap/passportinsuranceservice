@@ -8,8 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class PassportinsuranceserviceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PassportinsuranceserviceApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(PassportinsuranceserviceApplication.class, args);
+    }
 }

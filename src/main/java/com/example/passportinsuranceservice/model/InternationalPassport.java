@@ -15,12 +15,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class InternationalPassport {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer number;
     private Long personId;
-
-
 }

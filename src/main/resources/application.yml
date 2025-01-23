@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: rest
+    active: feign
   application:
     name: passportinsuranceservice
   datasource:

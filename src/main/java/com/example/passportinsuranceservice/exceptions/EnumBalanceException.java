@@ -7,6 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum EnumBalanceException {
     BALANCE("Недостаточно денег ");
-
     private String balanceException;
 }
