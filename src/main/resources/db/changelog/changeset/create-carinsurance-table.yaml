@@ -5,7 +5,7 @@ databaseChangeLog:
       author: Artem
       changes:
         - createTable:
-            tableName: carinsuranse
+            tableName: car_insurance
             columns:
               - column:
                   name: id
@@ -15,11 +15,11 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: carNumber
+                  name: car_number
                   type: bigint
               - column:
-                  name: carPrice
+                  name: car_price
                   type: bigint
               - column:
-                  name: carId
+                  name: car_id
                   type: bigint

@@ -6,11 +6,8 @@ import com.example.passportinsuranceservice.model.InternationalPassport;
 import com.example.passportinsuranceservice.repository.InternationalPassportRepository;
 import com.example.passportinsuranceservice.service.InternationalPassportService;
 import com.example.passportinsuranceservice.service.person.PersonClient;
-import com.example.passportinsuranceservice.service.person.impl.PersonClientFeignImpl;
-import com.example.passportinsuranceservice.service.person.impl.PersonClientImpl;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -20,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class InternationalPassportServiceImpl implements InternationalPassportService {
     private final InternationalPassportRepository internationalPassportRepository;
     private final PersonClient personService;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     @Override
     public InternationalPassport createInternationalPassport(Long personId) {
@@ -30,7 +28,10 @@ public class InternationalPassportServiceImpl implements InternationalPassportSe
             } else {
                 InternationalPassport internationalPassport = new InternationalPassport();
                 internationalPassport.setPersonId(personId);
-                internationalPassport.setNumber(getRandomPasportNumder());
+                internationalPassport.setNumber(getRandomPassportNumber());
+//                ProducerRecord producerRecord = new ProducerRecord("test_topic", internationalPassport);
+//                kafkaTemplate.send(producerRecord);
+                kafkaTemplate.send("test_topic", internationalPassport);
                 return internationalPassportRepository.save(internationalPassport);
             }
         }
@@ -52,7 +53,7 @@ public class InternationalPassportServiceImpl implements InternationalPassportSe
 
     }
 
-    static int getRandomPasportNumder() {
+    static int getRandomPassportNumber() {
         return ThreadLocalRandom.current().nextInt(100000, 1000000);
     }
 }

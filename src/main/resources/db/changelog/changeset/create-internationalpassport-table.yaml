@@ -5,7 +5,7 @@ databaseChangeLog:
       author: Artem
       changes:
         - createTable:
-            tableName: internationalpassport
+            tableName: international_passport
             columns:
               - column:
                   name: id
@@ -20,5 +20,5 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: personId
+                  name: person_id
                   type: bigint
